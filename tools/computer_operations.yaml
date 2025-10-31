@@ -1,0 +1,186 @@
+identity:
+  name: computer_operations
+  author: 5101good
+  label:
+    en_US: Computer Operations
+    zh_Hans: 桌面UI操作
+
+description:
+  human:
+    en_US: Perform desktop UI operations including mouse, keyboard, and screen operations in an AgentBay session
+    zh_Hans: 在AgentBay会话中执行桌面UI操作，包括鼠标、键盘和屏幕操作
+  llm: Perform desktop computer UI automation including mouse clicks, mouse movements, drag and drop, scrolling, text input, keyboard shortcuts, screenshots, and screen information queries. Use this for complete desktop automation tasks.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the desktop session
+      zh_Hans: 桌面会话的唯一标识符
+    llm_description: The session ID where the desktop UI operation should be performed. Must be a desktop session (windows_latest, linux_latest, etc).
+    form: llm
+
+  - name: action
+    type: string
+    required: true
+    label:
+      en_US: Action Type
+      zh_Hans: 操作类型
+    human_description:
+      en_US: The type of desktop UI operation to perform
+      zh_Hans: 要执行的桌面UI操作类型
+    llm_description: 'The type of desktop operation to perform. Supported actions: click_mouse (mouse click), move_mouse (move cursor), drag_mouse (drag and drop), scroll (scroll mouse wheel), input_text (type text), press_keys (press keyboard keys), screenshot (take screenshot), get_screen_size (get screen dimensions), get_cursor_position (get cursor position)'
+    form: llm
+
+  - name: x
+    type: number
+    required: false
+    label:
+      en_US: X Coordinate
+      zh_Hans: X坐标
+    human_description:
+      en_US: X coordinate for mouse operations
+      zh_Hans: 鼠标操作的X坐标
+    llm_description: X coordinate for mouse operations (required for click_mouse, move_mouse, scroll).
+    form: llm
+
+  - name: y
+    type: number
+    required: false
+    label:
+      en_US: Y Coordinate
+      zh_Hans: Y坐标
+    human_description:
+      en_US: Y coordinate for mouse operations
+      zh_Hans: 鼠标操作的Y坐标
+    llm_description: Y coordinate for mouse operations (required for click_mouse, move_mouse, scroll).
+    form: llm
+
+  - name: from_x
+    type: number
+    required: false
+    label:
+      en_US: From X Coordinate
+      zh_Hans: 起始X坐标
+    human_description:
+      en_US: Starting X coordinate for drag operation
+      zh_Hans: 拖拽操作的起始X坐标
+    llm_description: Starting X coordinate for drag_mouse operation.
+    form: llm
+
+  - name: from_y
+    type: number
+    required: false
+    label:
+      en_US: From Y Coordinate
+      zh_Hans: 起始Y坐标
+    human_description:
+      en_US: Starting Y coordinate for drag operation
+      zh_Hans: 拖拽操作的起始Y坐标
+    llm_description: Starting Y coordinate for drag_mouse operation.
+    form: llm
+
+  - name: to_x
+    type: number
+    required: false
+    label:
+      en_US: To X Coordinate
+      zh_Hans: 目标X坐标
+    human_description:
+      en_US: Ending X coordinate for drag operation
+      zh_Hans: 拖拽操作的目标X坐标
+    llm_description: Ending X coordinate for drag_mouse operation.
+    form: llm
+
+  - name: to_y
+    type: number
+    required: false
+    label:
+      en_US: To Y Coordinate
+      zh_Hans: 目标Y坐标
+    human_description:
+      en_US: Ending Y coordinate for drag operation
+      zh_Hans: 拖拽操作的目标Y坐标
+    llm_description: Ending Y coordinate for drag_mouse operation.
+    form: llm
+
+  - name: button
+    type: string
+    required: false
+    label:
+      en_US: Mouse Button
+      zh_Hans: 鼠标按钮
+    human_description:
+      en_US: Mouse button type (left, right, middle, double_left)
+      zh_Hans: 鼠标按钮类型（left, right, middle, double_left）
+    llm_description: 'Mouse button for click_mouse and drag_mouse operations. Options: left, right, middle, double_left. Default: left.'
+    form: llm
+
+  - name: direction
+    type: string
+    required: false
+    label:
+      en_US: Scroll Direction
+      zh_Hans: 滚动方向
+    human_description:
+      en_US: Direction to scroll (up, down, left, right)
+      zh_Hans: 滚动方向（up, down, left, right）
+    llm_description: 'Scroll direction for scroll operation. Options: up, down, left, right. Default: up.'
+    form: llm
+
+  - name: amount
+    type: number
+    required: false
+    label:
+      en_US: Scroll Amount
+      zh_Hans: 滚动量
+    human_description:
+      en_US: Amount to scroll
+      zh_Hans: 滚动的量
+    llm_description: 'Amount to scroll for scroll operation. Default: 1.'
+    form: llm
+
+  - name: text
+    type: string
+    required: false
+    label:
+      en_US: Text to Input
+      zh_Hans: 要输入的文本
+    human_description:
+      en_US: Text to input (required for input_text action)
+      zh_Hans: 要输入的文本（input_text操作必需）
+    llm_description: Text content to input (required for input_text action).
+    form: llm
+
+  - name: keys
+    type: string
+    required: false
+    label:
+      en_US: Keys to Press
+      zh_Hans: 要按的键
+    human_description:
+      en_US: Keys to press (required for press_keys action)
+      zh_Hans: 要按的键（press_keys操作必需）
+    llm_description: 'Keys to press (required for press_keys action). Can be a single key or multiple keys as a comma-separated string. Examples: "Enter", "Ctrl,C", "Alt,Tab".'
+    form: llm
+
+  - name: hold
+    type: boolean
+    required: false
+    label:
+      en_US: Hold Keys
+      zh_Hans: 保持按键
+    human_description:
+      en_US: Whether to hold the keys down
+      zh_Hans: 是否保持按键按下状态
+    llm_description: 'Whether to hold the keys down for press_keys operation. Default: false.'
+    form: llm
+
+extra:
+  python:
+    source: tools/computer_operations.py
+

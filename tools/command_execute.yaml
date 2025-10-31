@@ -1,0 +1,67 @@
+identity:
+  name: command_execute
+  author: 5101good
+  label:
+    en_US: Execute Command
+    zh_Hans: 执行命令
+
+description:
+  human:
+    en_US: Execute shell commands in an AgentBay session
+    zh_Hans: 在AgentBay会话中执行Shell命令
+  llm: Execute shell commands in an AgentBay cloud environment session. Use this tool to run commands, scripts, and system operations in the cloud.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the session to execute commands in
+      zh_Hans: 要在其中执行命令的会话的唯一标识符
+    llm_description: The session ID where the command should be executed. This must be a valid session that was previously created.
+    form: llm
+
+  - name: command
+    type: string
+    required: true
+    label:
+      en_US: Command
+      zh_Hans: 命令
+    human_description:
+      en_US: The shell command to execute
+      zh_Hans: 要执行的Shell命令
+    llm_description: The shell command to execute in the session. Can be any valid shell command like ls, cd, python script.py, etc.
+    form: llm
+
+  - name: timeout_ms
+    type: number
+    required: false
+    label:
+      en_US: Timeout (milliseconds)
+      zh_Hans: 超时时间（毫秒）
+    human_description:
+      en_US: Maximum execution time in milliseconds (1000-300000)
+      zh_Hans: 最大执行时间，以毫秒为单位（1000-300000）
+    llm_description: 'Optional timeout in milliseconds. Default is 30000 (30 seconds). Range: 1000-300000.'
+    form: llm
+    default: 30000
+
+  - name: working_directory
+    type: string
+    required: false
+    label:
+      en_US: Working Directory
+      zh_Hans: 工作目录
+    human_description:
+      en_US: Optional directory to change to before executing the command
+      zh_Hans: 执行命令前要切换到的可选目录
+    llm_description: Optional working directory to change to before executing the command. If provided, the command will be executed in this directory.
+    form: llm
+
+extra:
+  python:
+    source: tools/command_execute.py
+

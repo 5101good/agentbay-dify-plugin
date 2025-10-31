@@ -1,0 +1,19 @@
+identity:
+  name: session_list
+  author: 5101good
+  label:
+    en_US: List AgentBay Sessions
+    zh_Hans: 列出AgentBay会话
+
+description:
+  human:
+    en_US: List all available AgentBay sessions in your account
+    zh_Hans: 列出您账户中所有可用的AgentBay会话
+  llm: List all available AgentBay sessions associated with the current API key. This shows session IDs, environment types, and statuses.
+
+parameters: []
+
+extra:
+  python:
+    source: tools/session_list.py
+

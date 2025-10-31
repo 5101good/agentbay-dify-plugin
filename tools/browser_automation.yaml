@@ -1,0 +1,207 @@
+identity:
+  name: browser_automation
+  author: 5101good
+  label:
+    en_US: Browser Automation
+    zh_Hans: 浏览器自动化
+
+description:
+  human:
+    en_US: Unified browser automation tool for web navigation, interaction, and content extraction within AgentBay sessions
+    zh_Hans: 在AgentBay会话中进行网页导航、交互和内容提取的统一浏览器自动化工具
+  llm: |
+    Comprehensive browser automation tool that combines navigation, interaction, and content extraction capabilities.
+
+    Supported operations:
+    - navigate: Navigate to a URL
+    - click: Click on web elements
+    - type: Type text into form fields
+    - scroll: Scroll the page
+    - screenshot: Take page screenshots
+    - get_content: Extract page content
+    - wait_element: Wait for elements to appear
+    - wait: Wait for specified time
+    - analyze_elements: Analyze page elements to understand page structure (helps find correct selectors)
+
+    This tool requires a browser-enabled session (browser_latest image). Use this for comprehensive web automation tasks.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the browser-enabled session
+      zh_Hans: 启用浏览器的会话的唯一标识符
+    llm_description: The session ID with browser capabilities. This should be a session created with browser_latest image.
+    form: llm
+
+  - name: action
+    type: string
+    required: true
+    label:
+      en_US: Action Type
+      zh_Hans: 操作类型
+    human_description:
+      en_US: The type of browser operation to perform
+      zh_Hans: 要执行的浏览器操作类型
+    llm_description: |
+      The browser operation to perform. Available actions:
+      - navigate: Navigate to a URL (requires url parameter)
+      - click: Click an element (requires selector parameter)
+      - type: Type text into an element (requires selector and text parameters)
+      - scroll: Scroll the page (optional direction and distance parameters)
+      - screenshot: Take a screenshot (optional full_page parameter)
+      - get_content: Get page content
+      - analyze_elements: Analyze page elements to understand page structure (helps find correct selectors)
+      - wait_element: Wait for an element to appear (requires selector parameter)
+      - wait: Wait for specified time (uses wait_time parameter)
+    form: llm
+    options:
+      - value: navigate
+        label:
+          en_US: Navigate to URL
+          zh_Hans: 导航到URL
+      - value: click
+        label:
+          en_US: Click Element
+          zh_Hans: 点击元素
+      - value: type
+        label:
+          en_US: Type Text
+          zh_Hans: 输入文本
+      - value: scroll
+        label:
+          en_US: Scroll Page
+          zh_Hans: 滚动页面
+      - value: screenshot
+        label:
+          en_US: Take Screenshot
+          zh_Hans: 截取截图
+      - value: get_content
+        label:
+          en_US: Get Page Content
+          zh_Hans: 获取页面内容
+      - value: analyze_elements
+        label:
+          en_US: Analyze Page Elements
+          zh_Hans: 分析页面元素
+      - value: wait_element
+        label:
+          en_US: Wait for Element
+          zh_Hans: 等待元素
+      - value: wait
+        label:
+          en_US: Wait Time
+          zh_Hans: 等待时间
+
+  - name: url
+    type: string
+    required: false
+    label:
+      en_US: URL
+      zh_Hans: 网址
+    human_description:
+      en_US: The URL to navigate to (required for navigate action)
+      zh_Hans: 要导航到的网址（导航操作必需）
+    llm_description: The complete URL to navigate to, including protocol (http:// or https://). Required for navigate action.
+    form: llm
+
+  - name: selector
+    type: string
+    required: false
+    label:
+      en_US: CSS Selector
+      zh_Hans: CSS选择器
+    human_description:
+      en_US: CSS selector for the target element (required for click, type, wait_element actions)
+      zh_Hans: 目标元素的CSS选择器（点击、输入、等待元素操作必需）
+    llm_description: CSS selector to identify the web element for interaction. Required for click, type, and wait_element actions.
+    form: llm
+
+  - name: text
+    type: string
+    required: false
+    label:
+      en_US: Text to Type
+      zh_Hans: 要输入的文本
+    human_description:
+      en_US: Text to type into the element (required for type action)
+      zh_Hans: 要输入到元素中的文本（输入操作必需）
+    llm_description: Text content to type into the selected element. Required for type action.
+    form: llm
+
+  - name: wait_time
+    type: number
+    required: false
+    label:
+      en_US: Wait Time (seconds)
+      zh_Hans: 等待时间（秒）
+    human_description:
+      en_US: Time to wait in seconds (used for navigate, wait, and wait_element actions)
+      zh_Hans: 等待时间（秒）（用于导航、等待和等待元素操作）
+    llm_description: Time in seconds to wait. Used for navigate (page load), wait (simple delay), and wait_element (timeout) actions. Default is 3 seconds.
+    form: llm
+    default: 3
+
+  - name: direction
+    type: string
+    required: false
+    label:
+      en_US: Scroll Direction
+      zh_Hans: 滚动方向
+    human_description:
+      en_US: Direction to scroll (for scroll action)
+      zh_Hans: 滚动方向（滚动操作使用）
+    llm_description: 'Direction to scroll the page. Options: down, up, top, bottom. Default is down.'
+    form: llm
+    default: down
+    options:
+      - value: down
+        label:
+          en_US: Down
+          zh_Hans: 向下
+      - value: up
+        label:
+          en_US: Up
+          zh_Hans: 向上
+      - value: top
+        label:
+          en_US: To Top
+          zh_Hans: 到顶部
+      - value: bottom
+        label:
+          en_US: To Bottom
+          zh_Hans: 到底部
+
+  - name: distance
+    type: number
+    required: false
+    label:
+      en_US: Scroll Distance (pixels)
+      zh_Hans: 滚动距离（像素）
+    human_description:
+      en_US: Number of pixels to scroll (for scroll action)
+      zh_Hans: 滚动的像素数量（滚动操作使用）
+    llm_description: Number of pixels to scroll. Only used for up/down scroll directions. Default is 500 pixels.
+    form: llm
+    default: 500
+
+  - name: full_page
+    type: boolean
+    required: false
+    label:
+      en_US: Full Page Screenshot
+      zh_Hans: 全页截图
+    human_description:
+      en_US: Whether to capture the full page or just the viewport (for screenshot action)
+      zh_Hans: 是否截取整个页面或仅视口（截图操作使用）
+    llm_description: Whether to take a full page screenshot or just the visible viewport. Default is true (full page).
+    form: llm
+    default: true
+
+extra:
+  python:
+    source: tools/browser_automation.py
