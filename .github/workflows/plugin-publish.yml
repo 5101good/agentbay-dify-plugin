@@ -16,7 +16,7 @@ jobs:
           mkdir -p $RUNNER_TEMP/bin
           cd $RUNNER_TEMP/bin
 
-          wget https://github.com/langgenius/dify-plugin-daemon/releases/download/0.5.0/dify-plugin-linux-amd64
+          wget https://github.com/langgenius/dify-plugin-daemon/releases/download/0.3.1/dify-plugin-linux-amd64
           chmod +x dify-plugin-linux-amd64
 
           echo "CLI tool location:"
