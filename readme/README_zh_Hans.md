@@ -104,6 +104,17 @@
 - sync_context: false (可选)
 ```
 
+## Demo 示例
+
+我们提供了开箱即用的示例，展示了插件的各种功能。这些示例存放在 [demo 目录](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) 中。
+
+您可以通过以下步骤快速导入这些示例到 Dify：
+1. 从 [demo 目录](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) 下载示例文件（Dify DSL 格式）
+2. 在 Dify 中进入"工作室"，点击"导入 DSL 文件"
+3. 选择下载的示例文件进行导入
+4. 在导入的工作流中配置 AgentBay API Key
+5. 运行示例查看插件的工作效果
+
 ## 工具说明
 
 ### session_create

@@ -105,6 +105,17 @@ Difyにプラグインをインストールした後、APIキーパラメータ�
 - sync_context: false (オプション)
 ```
 
+## デモサンプル
+
+プラグインの機能を紹介するすぐに使えるデモサンプルを提供しています。これらのサンプルは [demo ディレクトリ](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) にあります。
+
+以下の手順でDifyにこれらのサンプルをインポートできます：
+1. [demo ディレクトリ](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) からデモファイル（Dify DSL形式）をダウンロード
+2. Difyで「スタジオ」に移動し、「DSLファイルをインポート」をクリック
+3. ダウンロードしたデモファイルを選択してインポート
+4. インポートしたワークフローでAgentBay APIキーを設定
+5. デモを実行してプラグインの動作を確認
+
 ## ツールリファレンス
 
 ### session_create

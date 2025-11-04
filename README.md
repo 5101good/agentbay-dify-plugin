@@ -104,6 +104,17 @@ Parameters:
 - sync_context: false (optional)
 ```
 
+## Demo Examples
+
+We provide ready-to-use demo examples that showcase the plugin's capabilities. These examples are available in the [demo directory](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo).
+
+You can quickly get started by importing these examples into Dify:
+1. Download the demo file (in Dify DSL format) from the [demo directory](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo)
+2. In Dify, go to "Studio" and click "Import DSL File"
+3. Select the downloaded demo file to import
+4. Configure the AgentBay API Key in the imported workflow
+5. Run the demo to see how the plugin works
+
 ## Tools Reference
 
 ### session_create

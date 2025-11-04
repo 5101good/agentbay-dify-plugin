@@ -165,7 +165,7 @@ parameters:
     human_description:
       en_US: Keys to press (required for press_keys action)
       zh_Hans: 要按的键（press_keys操作必需）
-    llm_description: 'Keys to press (required for press_keys action). Can be a single key or multiple keys as a comma-separated string. Examples: "Enter", "Ctrl,C", "Alt,Tab".'
+    llm_description: 'Keys to press (required for press_keys action). Can be a single key or multiple keys as a comma-separated string. Examples: "Enter", "Ctrl,c", "Alt,Tab".'
     form: llm
 
   - name: hold

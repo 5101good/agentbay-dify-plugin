@@ -1,0 +1,855 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: tt
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: github
+  value:
+    github_plugin_unique_identifier: 5101good/agentbay:1.0.0@552cc361274c94ccc2795e09f2d199810f93ac0d86baccdd96a72b6d496a9089
+    package: agentbay-dify-plugin.difypkg
+    repo: 5101good/agentbay-dify-plugin
+    version: 1.0.0
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openrouter:0.0.25@17ca8df60946d1b5bceef03b1553d16ed47d8b1bd2023eb92723f8e06ea33415
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1762237732212-source-1762237751687-target
+      source: '1762237732212'
+      sourceHandle: source
+      target: '1762237751687'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1762237751687-source-1762238956497-target
+      source: '1762237751687'
+      sourceHandle: source
+      target: '1762238956497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1762237751687-fail-branch-1762238960638-target
+      source: '1762237751687'
+      sourceHandle: fail-branch
+      target: '1762238960638'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: agent
+      id: 1762238956497-source-1762237766893-target
+      source: '1762238956497'
+      sourceHandle: source
+      target: '1762237766893'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: code
+      id: 1762237766893-source-1762239088740-target
+      source: '1762237766893'
+      sourceHandle: source
+      target: '1762239088740'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1762239088740-source-1762239136039-target
+      source: '1762239088740'
+      sourceHandle: source
+      target: '1762239136039'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1762239136039-source-1762239195178-target
+      source: '1762239136039'
+      sourceHandle: source
+      target: '1762239195178'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 52
+      id: '1762237732212'
+      position:
+        x: 30
+        y: 298
+      positionAbsolute:
+        x: 30
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        error_strategy: fail-branch
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: linux_latest
+          form: form
+          human_description:
+            en_US: The type of cloud environment to create
+            ja_JP: The type of cloud environment to create
+            pt_BR: The type of cloud environment to create
+            zh_Hans: 要创建的云环境类型
+          label:
+            en_US: Environment Type
+            ja_JP: Environment Type
+            pt_BR: Environment Type
+            zh_Hans: 环境类型
+          llm_description: Select the cloud environment type for the session. Different
+            environments support different capabilities - Linux for general computing
+            and commands, Browser for web automation, Code for development and script
+            execution, Windows for Windows-specific tasks, Mobile for Android automation.
+          max: null
+          min: null
+          name: image_id
+          options:
+          - icon: ''
+            label:
+              en_US: Linux Environment
+              ja_JP: Linux Environment
+              pt_BR: Linux Environment
+              zh_Hans: Linux环境
+            value: linux_latest
+          - icon: ''
+            label:
+              en_US: Browser Environment
+              ja_JP: Browser Environment
+              pt_BR: Browser Environment
+              zh_Hans: 浏览器环境
+            value: browser_latest
+          - icon: ''
+            label:
+              en_US: Code Environment
+              ja_JP: Code Environment
+              pt_BR: Code Environment
+              zh_Hans: 代码环境
+            value: code_latest
+          - icon: ''
+            label:
+              en_US: Windows Environment
+              ja_JP: Windows Environment
+              pt_BR: Windows Environment
+              zh_Hans: Windows环境
+            value: windows_latest
+          - icon: ''
+            label:
+              en_US: Mobile Environment
+              ja_JP: Mobile Environment
+              pt_BR: Mobile Environment
+              zh_Hans: 移动环境
+            value: mobile_latest
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          image_id: ''
+        provider_id: 5101good/agentbay/agentbay
+        provider_name: 5101good/agentbay/agentbay
+        provider_type: builtin
+        selected: false
+        title: 创建AgentBay会话
+        tool_configurations:
+          image_id:
+            type: constant
+            value: windows_latest
+        tool_description: 创建新的AgentBay云环境会话
+        tool_label: 创建AgentBay会话
+        tool_name: session_create
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 124
+      id: '1762237751687'
+      position:
+        x: 332
+        y: 298
+      positionAbsolute:
+        x: 332
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: 根据输入的用户请求信息，获取调用工具的必要参数，调用工具了解桌面的当前状态，并执行windows自动化等操作，完成用户请求。
+          maximum_iterations:
+            type: constant
+            value: 8
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: anthropic/claude-sonnet-4.5
+              model_type: llm
+              provider: langgenius/openrouter/openrouter
+              type: model-selector
+          query:
+            type: constant
+            value: '以下是用户的请求：{{#sys.query#}}
+
+              以下是你可以使用的工具环境信息：{{#1762237751687.text#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 在AgentBay会话中执行桌面UI操作，包括鼠标、键盘和屏幕操作
+              parameters:
+                action:
+                  auto: 1
+                  value: null
+                amount:
+                  auto: 1
+                  value: null
+                button:
+                  auto: 1
+                  value: null
+                direction:
+                  auto: 1
+                  value: null
+                from_x:
+                  auto: 1
+                  value: null
+                from_y:
+                  auto: 1
+                  value: null
+                hold:
+                  auto: 1
+                  value: null
+                keys:
+                  auto: 1
+                  value: null
+                session_id:
+                  auto: 1
+                  value: null
+                text:
+                  auto: 1
+                  value: null
+                to_x:
+                  auto: 1
+                  value: null
+                to_y:
+                  auto: 1
+                  value: null
+                x:
+                  auto: 1
+                  value: null
+                y:
+                  auto: 1
+                  value: null
+              provider_name: 5101good/agentbay/agentbay
+              provider_show_name: 5101good/agentbay/agentbay
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The unique identifier of the desktop session
+                  ja_JP: The unique identifier of the desktop session
+                  pt_BR: The unique identifier of the desktop session
+                  zh_Hans: 桌面会话的唯一标识符
+                label:
+                  en_US: Session ID
+                  ja_JP: Session ID
+                  pt_BR: Session ID
+                  zh_Hans: 会话ID
+                llm_description: The session ID where the desktop UI operation should
+                  be performed. Must be a desktop session (windows_latest, linux_latest,
+                  etc).
+                max: null
+                min: null
+                name: session_id
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The type of desktop UI operation to perform
+                  ja_JP: The type of desktop UI operation to perform
+                  pt_BR: The type of desktop UI operation to perform
+                  zh_Hans: 要执行的桌面UI操作类型
+                label:
+                  en_US: Action Type
+                  ja_JP: Action Type
+                  pt_BR: Action Type
+                  zh_Hans: 操作类型
+                llm_description: 'The type of desktop operation to perform. Supported
+                  actions: click_mouse (mouse click), move_mouse (move cursor), drag_mouse
+                  (drag and drop), scroll (scroll mouse wheel), input_text (type text),
+                  press_keys (press keyboard keys), screenshot (take screenshot),
+                  get_screen_size (get screen dimensions), get_cursor_position (get
+                  cursor position)'
+                max: null
+                min: null
+                name: action
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: X coordinate for mouse operations
+                  ja_JP: X coordinate for mouse operations
+                  pt_BR: X coordinate for mouse operations
+                  zh_Hans: 鼠标操作的X坐标
+                label:
+                  en_US: X Coordinate
+                  ja_JP: X Coordinate
+                  pt_BR: X Coordinate
+                  zh_Hans: X坐标
+                llm_description: X coordinate for mouse operations (required for click_mouse,
+                  move_mouse, scroll).
+                max: null
+                min: null
+                name: x
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Y coordinate for mouse operations
+                  ja_JP: Y coordinate for mouse operations
+                  pt_BR: Y coordinate for mouse operations
+                  zh_Hans: 鼠标操作的Y坐标
+                label:
+                  en_US: Y Coordinate
+                  ja_JP: Y Coordinate
+                  pt_BR: Y Coordinate
+                  zh_Hans: Y坐标
+                llm_description: Y coordinate for mouse operations (required for click_mouse,
+                  move_mouse, scroll).
+                max: null
+                min: null
+                name: y
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Starting X coordinate for drag operation
+                  ja_JP: Starting X coordinate for drag operation
+                  pt_BR: Starting X coordinate for drag operation
+                  zh_Hans: 拖拽操作的起始X坐标
+                label:
+                  en_US: From X Coordinate
+                  ja_JP: From X Coordinate
+                  pt_BR: From X Coordinate
+                  zh_Hans: 起始X坐标
+                llm_description: Starting X coordinate for drag_mouse operation.
+                max: null
+                min: null
+                name: from_x
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Starting Y coordinate for drag operation
+                  ja_JP: Starting Y coordinate for drag operation
+                  pt_BR: Starting Y coordinate for drag operation
+                  zh_Hans: 拖拽操作的起始Y坐标
+                label:
+                  en_US: From Y Coordinate
+                  ja_JP: From Y Coordinate
+                  pt_BR: From Y Coordinate
+                  zh_Hans: 起始Y坐标
+                llm_description: Starting Y coordinate for drag_mouse operation.
+                max: null
+                min: null
+                name: from_y
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Ending X coordinate for drag operation
+                  ja_JP: Ending X coordinate for drag operation
+                  pt_BR: Ending X coordinate for drag operation
+                  zh_Hans: 拖拽操作的目标X坐标
+                label:
+                  en_US: To X Coordinate
+                  ja_JP: To X Coordinate
+                  pt_BR: To X Coordinate
+                  zh_Hans: 目标X坐标
+                llm_description: Ending X coordinate for drag_mouse operation.
+                max: null
+                min: null
+                name: to_x
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Ending Y coordinate for drag operation
+                  ja_JP: Ending Y coordinate for drag operation
+                  pt_BR: Ending Y coordinate for drag operation
+                  zh_Hans: 拖拽操作的目标Y坐标
+                label:
+                  en_US: To Y Coordinate
+                  ja_JP: To Y Coordinate
+                  pt_BR: To Y Coordinate
+                  zh_Hans: 目标Y坐标
+                llm_description: Ending Y coordinate for drag_mouse operation.
+                max: null
+                min: null
+                name: to_y
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Mouse button type (left, right, middle, double_left)
+                  ja_JP: Mouse button type (left, right, middle, double_left)
+                  pt_BR: Mouse button type (left, right, middle, double_left)
+                  zh_Hans: 鼠标按钮类型（left, right, middle, double_left）
+                label:
+                  en_US: Mouse Button
+                  ja_JP: Mouse Button
+                  pt_BR: Mouse Button
+                  zh_Hans: 鼠标按钮
+                llm_description: 'Mouse button for click_mouse and drag_mouse operations.
+                  Options: left, right, middle, double_left. Default: left.'
+                max: null
+                min: null
+                name: button
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Direction to scroll (up, down, left, right)
+                  ja_JP: Direction to scroll (up, down, left, right)
+                  pt_BR: Direction to scroll (up, down, left, right)
+                  zh_Hans: 滚动方向（up, down, left, right）
+                label:
+                  en_US: Scroll Direction
+                  ja_JP: Scroll Direction
+                  pt_BR: Scroll Direction
+                  zh_Hans: 滚动方向
+                llm_description: 'Scroll direction for scroll operation. Options:
+                  up, down, left, right. Default: up.'
+                max: null
+                min: null
+                name: direction
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Amount to scroll
+                  ja_JP: Amount to scroll
+                  pt_BR: Amount to scroll
+                  zh_Hans: 滚动的量
+                label:
+                  en_US: Scroll Amount
+                  ja_JP: Scroll Amount
+                  pt_BR: Scroll Amount
+                  zh_Hans: 滚动量
+                llm_description: 'Amount to scroll for scroll operation. Default:
+                  1.'
+                max: null
+                min: null
+                name: amount
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: number
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Text to input (required for input_text action)
+                  ja_JP: Text to input (required for input_text action)
+                  pt_BR: Text to input (required for input_text action)
+                  zh_Hans: 要输入的文本（input_text操作必需）
+                label:
+                  en_US: Text to Input
+                  ja_JP: Text to Input
+                  pt_BR: Text to Input
+                  zh_Hans: 要输入的文本
+                llm_description: Text content to input (required for input_text action).
+                max: null
+                min: null
+                name: text
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Keys to press (required for press_keys action)
+                  ja_JP: Keys to press (required for press_keys action)
+                  pt_BR: Keys to press (required for press_keys action)
+                  zh_Hans: 要按的键（press_keys操作必需）
+                label:
+                  en_US: Keys to Press
+                  ja_JP: Keys to Press
+                  pt_BR: Keys to Press
+                  zh_Hans: 要按的键
+                llm_description: 'Keys to press (required for press_keys action).
+                  Can be a single key or multiple keys as a comma-separated string.
+                  Examples: "Enter", "Ctrl,C", "Alt,Tab".'
+                max: null
+                min: null
+                name: keys
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: Whether to hold the keys down
+                  ja_JP: Whether to hold the keys down
+                  pt_BR: Whether to hold the keys down
+                  zh_Hans: 是否保持按键按下状态
+                label:
+                  en_US: Hold Keys
+                  ja_JP: Hold Keys
+                  pt_BR: Hold Keys
+                  zh_Hans: 保持按键
+                llm_description: 'Whether to hold the keys down for press_keys operation.
+                  Default: false.'
+                max: null
+                min: null
+                name: hold
+                options: []
+                placeholder: null
+                precision: null
+                required: false
+                scope: null
+                template: null
+                type: boolean
+              settings: {}
+              tool_description: 在AgentBay会话中执行桌面UI操作，包括鼠标、键盘和屏幕操作
+              tool_label: 桌面UI操作
+              tool_name: computer_operations
+              type: builtin
+        agent_strategy_label: ReAct
+        agent_strategy_name: ReAct
+        agent_strategy_provider_name: langgenius/agent/agent
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        plugin_unique_identifier: langgenius/agent:0.0.25@3507a9a417ea8d76e5de6b2803953ca891851b6b336fafe1315471782711730f
+        selected: false
+        title: PC Agent
+        tool_node_version: '2'
+        type: agent
+      height: 196
+      id: '1762237766893'
+      position:
+        x: 936
+        y: 298
+      positionAbsolute:
+        x: 936
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1762237751687.text#}}'
+        selected: false
+        title: Show Info
+        type: answer
+        variables: []
+      height: 103
+      id: '1762238956497'
+      position:
+        x: 634
+        y: 298
+      positionAbsolute:
+        x: 634
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1762237751687.error_type#}}{{#1762237751687.error_message#}}'
+        selected: false
+        title: Show Error
+        type: answer
+        variables: []
+      height: 121
+      id: '1762238960638'
+      position:
+        x: 634
+        y: 441
+      positionAbsolute:
+        x: 634
+        y: 441
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(arg1: list):\n    urls = []\n    \n    # 处理文件数组\n    if arg1:\n\
+          \        for item in arg1:\n            # 尝试多种方式获取URL\n            url =\
+          \ None\n            if isinstance(item, dict):\n                url = item.get('url')\
+          \ or item.get('remote_url')\n            elif hasattr(item, 'url'):\n  \
+          \              url = item.url\n            \n            if url:\n     \
+          \           urls.append(url)\n    \n    # 返回逗号分隔的URL字符串\n    return {\n\
+          \        \"result\": \", \".join(urls)\n    }"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: screenshot list
+        type: code
+        variables:
+        - value_selector:
+          - '1762237766893'
+          - files
+          value_type: array[file]
+          variable: arg1
+      height: 52
+      id: '1762239088740'
+      position:
+        x: 1238
+        y: 298
+      positionAbsolute:
+        x: 1238
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: openai/gpt-5
+          provider: langgenius/openrouter/openrouter
+        prompt_template:
+        - id: 195a14ec-4965-439f-b405-d8a1e1eae05d
+          role: system
+          text: '以下是用户的原始任务：{{#sys.query#}};
+
+            以下是windows自动化Agent执行完成的结果：{{#1762237766893.text#}}；
+
+            以下是windows自动化Agent执行过程中截取的图片：{{#1762239088740.result#}}；
+
+            请你结合前面的信息，生成图文并茂的任务结果描述，图片应使用markdown语法渲染，告诉用户这次人物的结果。'
+        - id: 44b945c6-546f-459a-a1f2-42a14645ebeb
+          role: user
+          text: 开始生成
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1762239136039'
+      position:
+        x: 1540
+        y: 298
+      positionAbsolute:
+        x: 1540
+        y: 298
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1762239136039.text#}}'
+        selected: false
+        title: answer
+        type: answer
+        variables: []
+      height: 103
+      id: '1762239195178'
+      position:
+        x: 1842
+        y: 298
+      positionAbsolute:
+        x: 1842
+        y: 298
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -716
+      y: 24
+      zoom: 0.7
+  rag_pipeline_variables: []
