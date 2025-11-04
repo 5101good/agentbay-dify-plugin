@@ -1,0 +1,103 @@
+identity:
+  name: file_operations
+  author: 5101good
+  label:
+    en_US: File Operations
+    zh_Hans: 文件操作
+
+description:
+  human:
+    en_US: Unified file operations tool for reading, writing files and listing directories within AgentBay sessions
+    zh_Hans: 在AgentBay会话中进行文件读取、写入和目录列表的统一文件操作工具
+  llm: |
+    Comprehensive file operations tool that combines file reading, writing, and directory listing capabilities.
+
+    Supported operations:
+    - read: Read file content
+    - write: Write content to file
+    - list: List directory contents
+
+    This tool requires an active AgentBay session. Use this for comprehensive file management tasks.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the AgentBay session
+      zh_Hans: AgentBay会话的唯一标识符
+    llm_description: The session ID for the AgentBay session where file operations will be performed.
+    form: llm
+
+  - name: action
+    type: string
+    required: true
+    label:
+      en_US: Action Type
+      zh_Hans: 操作类型
+    human_description:
+      en_US: The type of file operation to perform
+      zh_Hans: 要执行的文件操作类型
+    llm_description: |
+      The file operation to perform. Available actions:
+      - read: Read file content (requires file_path parameter)
+      - write: Write content to file (requires file_path and content parameters)
+      - list: List directory contents (requires directory_path parameter, defaults to current directory)
+    form: llm
+    options:
+      - value: read
+        label:
+          en_US: Read File
+          zh_Hans: 读取文件
+      - value: write
+        label:
+          en_US: Write File
+          zh_Hans: 写入文件
+      - value: list
+        label:
+          en_US: List Directory
+          zh_Hans: 列出目录
+
+  - name: file_path
+    type: string
+    required: false
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+    human_description:
+      en_US: The path to the file (required for read and write actions)
+      zh_Hans: 文件路径（读取和写入操作必需）
+    llm_description: The absolute or relative path to the file. Required for read and write actions.
+    form: llm
+
+  - name: content
+    type: string
+    required: false
+    label:
+      en_US: File Content
+      zh_Hans: 文件内容
+    human_description:
+      en_US: The content to write to the file (required for write action)
+      zh_Hans: 要写入文件的内容（写入操作必需）
+    llm_description: The text content to write to the file. Required for write action. Can be empty to create an empty file.
+    form: llm
+
+  - name: directory_path
+    type: string
+    required: false
+    label:
+      en_US: Directory Path
+      zh_Hans: 目录路径
+    human_description:
+      en_US: The path to the directory to list (for list action)
+      zh_Hans: 要列出的目录路径（列出操作使用）
+    llm_description: The absolute or relative path to the directory to list. Defaults to current directory (.) if not specified.
+    form: llm
+    default: .
+
+extra:
+  python:
+    source: tools/file_operations.py

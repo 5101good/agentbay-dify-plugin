@@ -1,0 +1,48 @@
+identity:
+  author: 5101good
+  name: agentbay
+  label:
+    en_US: WuYing AgentBay
+    zh_Hans: 无影AgentBay
+  description:
+    en_US: WuYing AgentBay plugin for Dify. Execute commands, manage files, run code, and automate browsers in cloud environments.
+    zh_Hans: 适用于Dify的无影AgentBay插件。在云环境中执行命令、管理文件、运行代码、GUI自动化和浏览器自动化。
+  icon: icon.svg
+
+credentials_for_provider:
+  api_key:
+    description:
+      en_US: API Key for AgentBay
+      zh_Hans: AgentBay 的 API 密钥
+    help:
+      en_US: You can get the API key from the AgentBay Console
+      zh_Hans: 你可以从 AgentBay 控制台获取 API 密钥
+    label:
+      en_US: API Key
+      zh_Hans: API 密钥
+    required: true
+    type: secret-input
+    url: https://agentbay.console.aliyun.com/service-management
+
+tools:
+  # 会话管理工具
+  - tools/session_create.yaml
+  - tools/session_delete.yaml
+  - tools/session_list.yaml
+  
+  # 命令和代码执行工具
+  - tools/command_execute.yaml
+  - tools/code_execute.yaml
+  
+  # 文件操作工具
+  - tools/file_operations.yaml
+  
+  # 浏览器自动化工具
+  - tools/browser_automation.yaml
+  
+  # UI自动化工具
+  - tools/computer_operations.yaml   # 桌面UI操作
+  - tools/mobile_operations.yaml     # 移动设备UI操作
+extra:
+  python:
+    source: provider/agentbay.py

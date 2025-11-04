@@ -1,0 +1,53 @@
+identity:
+  name: session_create
+  author: 5101good
+  label:
+    en_US: Create AgentBay Session
+    zh_Hans: 创建AgentBay会话
+
+description:
+  human:
+    en_US: Create a new AgentBay cloud environment session
+    zh_Hans: 创建新的AgentBay云环境会话
+  llm: Create a new AgentBay cloud environment session. Choose the appropriate environment type based on your needs - Linux for general computing, Browser for web automation, Code for development, Windows for Windows-specific tasks, or Mobile for Android automation. Sessions are automatically tagged for management by the Dify plugin.
+
+parameters:
+  - name: image_id
+    type: select
+    required: false
+    label:
+      en_US: Environment Type
+      zh_Hans: 环境类型
+    human_description:
+      en_US: The type of cloud environment to create
+      zh_Hans: 要创建的云环境类型
+    llm_description: Select the cloud environment type for the session. Different environments support different capabilities - Linux for general computing and commands, Browser for web automation, Code for development and script execution, Windows for Windows-specific tasks, Mobile for Android automation.
+    form: form
+    default: linux_latest
+    options:
+      - value: linux_latest
+        label:
+          en_US: Linux Environment
+          zh_Hans: Linux环境
+      - value: browser_latest
+        label:
+          en_US: Browser Environment
+          zh_Hans: 浏览器环境
+      - value: code_latest
+        label:
+          en_US: Code Environment
+          zh_Hans: 代码环境
+      - value: windows_latest
+        label:
+          en_US: Windows Environment
+          zh_Hans: Windows环境
+      - value: mobile_latest
+        label:
+          en_US: Mobile Environment
+          zh_Hans: 移动环境
+
+
+extra:
+  python:
+    source: tools/session_create.py
+

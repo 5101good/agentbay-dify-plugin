@@ -1,0 +1,89 @@
+identity:
+  name: code_execute
+  author: 5101good
+  label:
+    en_US: Execute Code
+    zh_Hans: 执行代码
+
+description:
+  human:
+    en_US: Execute code scripts in an AgentBay session with specified programming language
+    zh_Hans: 在AgentBay会话中执行指定编程语言的代码脚本
+  llm: Execute code in an AgentBay cloud environment session. Supports multiple programming languages like Python, JavaScript. The code will be executed in the specified session.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the session to execute code in
+      zh_Hans: 要在其中执行代码的会话的唯一标识符
+    llm_description: The session ID where the code should be executed. This must be a valid session that was previously created.
+    form: llm
+
+  - name: language
+    type: select
+    required: true
+    label:
+      en_US: Programming Language
+      zh_Hans: 编程语言
+    human_description:
+      en_US: The programming language of the code to execute
+      zh_Hans: 要执行的代码的编程语言
+    llm_description: The programming language for the code. Choose the appropriate language for your code.
+    form: form
+    default: python
+    options:
+      - value: python
+        label:
+          en_US: Python
+          zh_Hans: Python
+      - value: javascript
+        label:
+          en_US: JavaScript (Node.js)
+          zh_Hans: JavaScript (Node.js)
+
+  - name: code
+    type: string
+    required: true
+    label:
+      en_US: Code Content
+      zh_Hans: 代码内容
+    human_description:
+      en_US: The code content to execute
+      zh_Hans: 要执行的代码内容
+    llm_description: The actual code content to execute. Provide the complete code that should be run.
+    form: llm
+
+  - name: timeout_ms
+    type: number
+    required: false
+    label:
+      en_US: Timeout (milliseconds)
+      zh_Hans: 超时时间（毫秒）
+    human_description:
+      en_US: Maximum execution time in milliseconds (1000-300000)
+      zh_Hans: 最大执行时间，以毫秒为单位（1000-300000）
+    llm_description: 'Optional timeout in milliseconds. Default is 60000 (60 seconds). Range: 1000-300000.'
+    form: llm
+    default: 60000
+
+  - name: working_directory
+    type: string
+    required: false
+    label:
+      en_US: Working Directory
+      zh_Hans: 工作目录
+    human_description:
+      en_US: Optional directory to execute the code in
+      zh_Hans: 执行代码的可选目录
+    llm_description: Optional working directory to execute the code in. If provided, the code will be executed in this directory.
+    form: llm
+
+extra:
+  python:
+    source: tools/code_execute.py
+

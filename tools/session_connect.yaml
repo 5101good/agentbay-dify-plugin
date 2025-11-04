@@ -1,0 +1,30 @@
+identity:
+  name: session_connect
+  author: 5101good
+  label:
+    en_US: Connect to AgentBay Session
+    zh_Hans: 连接到AgentBay会话
+
+description:
+  human:
+    en_US: Connect to an existing AgentBay session to check its status and availability
+    zh_Hans: 连接到现有的AgentBay会话以检查其状态和可用性
+  llm: Connect to an existing AgentBay session using its session ID to verify it's available and get session information.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the session to connect to
+      zh_Hans: 要连接的会话的唯一标识符
+    llm_description: The session ID to connect to. This is the unique identifier returned when creating a session.
+    form: llm
+
+extra:
+  python:
+    source: tools/session_connect.py
+

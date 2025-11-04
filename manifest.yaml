@@ -1,0 +1,38 @@
+version: 1.0.0
+type: plugin
+author: 5101good
+name: agentbay
+label:
+  en_US: WuYing AgentBay
+  zh_Hans: 无影AgentBay
+description:
+  en_US: Integrate WuYing AgentBay's graphical cloud sandbox cloud computing capabilities into Dify applications to support command execution, file operations, code execution, GUI automation, and browser automation in cloud environments.
+  zh_Hans: 将无影AgentBay的图形云沙箱能力集成到Dify应用中，支持在云电脑环境中执行命令、文件操作、代码执行、GUI自动化和浏览器自动化。
+icon: icon.svg
+icon_dark: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/agentbay.yaml
+meta:
+  version: 1.0.0
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2025-10-16T19:08:41.176151+08:00
+privacy: PRIVACY.md
+tags:
+  - utilities
+verified: false

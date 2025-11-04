@@ -1,0 +1,162 @@
+identity:
+  name: mobile_operations
+  author: 5101good
+  label:
+    en_US: Mobile Operations
+    zh_Hans: 移动设备UI操作
+
+description:
+  human:
+    en_US: Perform mobile device UI operations including touch, input, and UI element interactions in an AgentBay session
+    zh_Hans: 在AgentBay会话中执行移动设备UI操作，包括触摸、输入和UI元素交互
+  llm: Perform mobile device UI automation including taps, swipes, text input, key presses, screenshots, and UI element queries. Use this for complete mobile automation tasks on Android devices.
+
+parameters:
+  - name: session_id
+    type: string
+    required: true
+    label:
+      en_US: Session ID
+      zh_Hans: 会话ID
+    human_description:
+      en_US: The unique identifier of the mobile session
+      zh_Hans: 移动设备会话的唯一标识符
+    llm_description: The session ID where the mobile UI operation should be performed. Must be a mobile session (mobile_latest).
+    form: llm
+
+  - name: action
+    type: string
+    required: true
+    label:
+      en_US: Action Type
+      zh_Hans: 操作类型
+    human_description:
+      en_US: The type of mobile UI operation to perform
+      zh_Hans: 要执行的移动设备UI操作类型
+    llm_description: 'The type of mobile operation to perform. Supported actions: tap (tap on screen), swipe (swipe gesture), input_text (type text), send_key (press device key), screenshot (take screenshot), get_clickable_elements (get clickable UI elements), get_all_elements (get all UI elements)'
+    form: llm
+
+  - name: x
+    type: number
+    required: false
+    label:
+      en_US: X Coordinate
+      zh_Hans: X坐标
+    human_description:
+      en_US: X coordinate for tap action
+      zh_Hans: 点击操作的X坐标
+    llm_description: X coordinate for tap action (required for tap action).
+    form: llm
+
+  - name: y
+    type: number
+    required: false
+    label:
+      en_US: Y Coordinate
+      zh_Hans: Y坐标
+    human_description:
+      en_US: Y coordinate for tap action
+      zh_Hans: 点击操作的Y坐标
+    llm_description: Y coordinate for tap action (required for tap action).
+    form: llm
+
+  - name: start_x
+    type: number
+    required: false
+    label:
+      en_US: Start X Coordinate
+      zh_Hans: 起始X坐标
+    human_description:
+      en_US: Starting X coordinate for swipe action
+      zh_Hans: 滑动操作的起始X坐标
+    llm_description: Starting X coordinate for swipe action (required for swipe action).
+    form: llm
+
+  - name: start_y
+    type: number
+    required: false
+    label:
+      en_US: Start Y Coordinate
+      zh_Hans: 起始Y坐标
+    human_description:
+      en_US: Starting Y coordinate for swipe action
+      zh_Hans: 滑动操作的起始Y坐标
+    llm_description: Starting Y coordinate for swipe action (required for swipe action).
+    form: llm
+
+  - name: end_x
+    type: number
+    required: false
+    label:
+      en_US: End X Coordinate
+      zh_Hans: 结束X坐标
+    human_description:
+      en_US: Ending X coordinate for swipe action
+      zh_Hans: 滑动操作的结束X坐标
+    llm_description: Ending X coordinate for swipe action (required for swipe action).
+    form: llm
+
+  - name: end_y
+    type: number
+    required: false
+    label:
+      en_US: End Y Coordinate
+      zh_Hans: 结束Y坐标
+    human_description:
+      en_US: Ending Y coordinate for swipe action
+      zh_Hans: 滑动操作的结束Y坐标
+    llm_description: Ending Y coordinate for swipe action (required for swipe action).
+    form: llm
+
+  - name: duration_ms
+    type: number
+    required: false
+    label:
+      en_US: Swipe Duration (ms)
+      zh_Hans: 滑动持续时间(毫秒)
+    human_description:
+      en_US: Duration of swipe gesture in milliseconds
+      zh_Hans: 滑动手势的持续时间（毫秒）
+    llm_description: 'Duration of swipe gesture in milliseconds for swipe action. Default: 300.'
+    form: llm
+
+  - name: text
+    type: string
+    required: false
+    label:
+      en_US: Text to Input
+      zh_Hans: 要输入的文本
+    human_description:
+      en_US: Text to input (required for input_text action)
+      zh_Hans: 要输入的文本（input_text操作必需）
+    llm_description: Text content to input (required for input_text action).
+    form: llm
+
+  - name: key
+    type: string
+    required: false
+    label:
+      en_US: Key to Send
+      zh_Hans: 要发送的按键
+    human_description:
+      en_US: Key to send (required for send_key action)
+      zh_Hans: 要发送的按键（send_key操作必需）
+    llm_description: 'Key to send (required for send_key action). Supported keys: home, back, volume_up, volume_down, power, menu, or numeric key code.'
+    form: llm
+
+  - name: timeout_ms
+    type: number
+    required: false
+    label:
+      en_US: Timeout (ms)
+      zh_Hans: 超时时间(毫秒)
+    human_description:
+      en_US: Timeout for UI element queries in milliseconds
+      zh_Hans: UI元素查询的超时时间（毫秒）
+    llm_description: 'Timeout in milliseconds for get_clickable_elements and get_all_elements actions. Default: 2000.'
+    form: llm
+
+extra:
+  python:
+    source: tools/mobile_operations.py
+
