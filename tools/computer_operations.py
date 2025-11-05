@@ -259,10 +259,18 @@ class ComputerOperationsTool(Tool):
                     yield self.create_image_message(screenshot_data)
         elif action == 'get_screen_size':
             if result.data:
-                success_message += f"• Screen Width: {result.data.get('width', 'N/A')}\n• Screen Height: {result.data.get('height', 'N/A')}\n• DPI Scaling: {result.data.get('dpiScalingFactor', 'N/A')}"
+                # Check if result.data is a dictionary or string
+                if isinstance(result.data, dict):
+                    success_message += f"• Screen Width: {result.data.get('width', 'N/A')}\n• Screen Height: {result.data.get('height', 'N/A')}\n• DPI Scaling: {result.data.get('dpiScalingFactor', 'N/A')}"
+                else:
+                    success_message += f"• Screen Size Info: {result.data}"
         elif action == 'get_cursor_position':
             if result.data:
-                success_message += f"• Cursor Position: ({result.data.get('x', 'N/A')}, {result.data.get('y', 'N/A')})"
+                # Check if result.data is a dictionary or string
+                if isinstance(result.data, dict):
+                    success_message += f"• Cursor Position: ({result.data.get('x', 'N/A')}, {result.data.get('y', 'N/A')})"
+                else:
+                    success_message += f"• Cursor Position Info: {result.data}"
 
         yield self.create_text_message(success_message)
 

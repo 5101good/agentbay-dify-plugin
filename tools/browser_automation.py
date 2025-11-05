@@ -112,7 +112,7 @@ class BrowserAutomationTool(Tool):
                 yield self.create_text_message(success_message)
 
                 # If screenshot operation, return image data using blob message
-                if action == 'screenshot' and result.data and result.data.get('screenshot_data'):
+                if action == 'screenshot' and result.data and isinstance(result.data, dict) and result.data.get('screenshot_data'):
                     screenshot_data = result.data.get('screenshot_data')
                     # Use create_blob_message to return image file
                     yield self.create_blob_message(
@@ -287,7 +287,7 @@ class BrowserAutomationTool(Tool):
             if not browser_init_result.success:
                 return browser_init_result
 
-            endpoint_url = browser_init_result.data.get('endpoint_url')
+            endpoint_url = browser_init_result.data.get('endpoint_url') if isinstance(browser_init_result.data, dict) else None
             if not endpoint_url:
                 from utils.agentbay_client import SimpleResult
                 return SimpleResult(
