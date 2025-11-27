@@ -4,6 +4,7 @@ AgentBay Unified Browser Automation Tool - Using Native API + Playwright
 from collections.abc import Generator
 from typing import Any
 import time
+import json
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -383,9 +384,21 @@ class BrowserAutomationTool(Tool):
                 message += f"\n• Target Selector: {selector}"
 
         elif action == 'get_content' and data:
-            content_length = data.get('content_length', 0)
+            content = data.get('content', '')
+            content_length = data.get('content_length', 0) or len(content)
             if content_length:
                 message += f"\n• Page Content Length: {content_length} characters"
+            if content:
+                message += f"\n\n📄 Page Content:\n{content}"
+        
+        elif action == 'analyze_elements' and data:
+            elements = data.get('elements', [])
+            if elements:
+                message += f"\n• Found {len(elements)} page elements\n\n"
+                message += "📋 Element Details:\n"
+                for i, element in enumerate(elements, 1):
+                    element_info = json.dumps(element, ensure_ascii=False, indent=2) if isinstance(element, dict) else str(element)
+                    message += f"\n[{i}] {element_info}\n"
 
         # Add follow-up suggestions
         message += "\n\n💡 Next Steps:"
@@ -434,6 +447,11 @@ class BrowserAutomationTool(Tool):
         elif action == 'get_content' and data:
             content = data.get('content')
             if content:
-                messages.append(self.create_variable_message("browser_page_content", content[:1000]))  # Limit length
+                messages.append(self.create_variable_message("browser_page_content", content))  # Return complete content
+        
+        elif action == 'analyze_elements' and data:
+            elements = data.get('elements')
+            if elements:
+                messages.append(self.create_variable_message("browser_elements_count", str(len(elements))))
 
         return messages

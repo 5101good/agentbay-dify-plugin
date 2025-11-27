@@ -108,6 +108,8 @@
 
 我们提供了开箱即用的示例，展示了插件的各种功能。这些示例存放在 [demo 目录](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) 中。
 
+> **注意**：这些 demo 只是简单的示例，仅用于参考和教学目的。
+
 您可以通过以下步骤快速导入这些示例到 Dify：
 1. 从 [demo 目录](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo) 下载示例文件（Dify DSL 格式）
 2. 在 Dify 中进入"工作室"，点击"导入 DSL 文件"
@@ -175,6 +177,14 @@
 2. 使用command_execute执行检查命令
 3. 使用file_operations读取日志
 4. 删除会话
+
+## 已知问题
+
+**⚠️ 无法在 Dify 官方云平台使用**
+
+由于网络限制，在 Dify 官方云平台（cloud.dify.ai）上无法访问 AgentBay 服务，会导致插件初始化失败。
+
+**解决方案**：请在自部署的 Dify 实例中使用本插件。
 
 ## 相关链接
 

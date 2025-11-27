@@ -108,6 +108,8 @@ Parameters:
 
 We provide ready-to-use demo examples that showcase the plugin's capabilities. These examples are available in the [demo directory](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo).
 
+> **Note**: These demos are simple examples for reference and educational purposes only.
+
 You can quickly get started by importing these examples into Dify:
 1. Download the demo file (in Dify DSL format) from the [demo directory](https://github.com/5101good/agentbay-dify-plugin/tree/main/demo)
 2. In Dify, go to "Studio" and click "Import DSL File"
@@ -175,6 +177,14 @@ Desktop UI automation tool, suitable for Windows, browser and other graphical en
 2. Use command_execute to run check commands
 3. Use file_operations to read logs
 4. Delete session
+
+## Known Issues
+
+**⚠️ Cannot Use on Official Dify Cloud**
+
+Due to network restrictions, the AgentBay service cannot be accessed from the official Dify cloud platform (cloud.dify.ai), which will cause plugin initialization to fail. 
+
+**Solution**: Please use this plugin in a self-hosted Dify instance.
 
 ## Links
 

@@ -47,19 +47,6 @@ parameters:
       - write: Write content to file (requires file_path and content parameters)
       - list: List directory contents (requires directory_path parameter, defaults to current directory)
     form: llm
-    options:
-      - value: read
-        label:
-          en_US: Read File
-          zh_Hans: 读取文件
-      - value: write
-        label:
-          en_US: Write File
-          zh_Hans: 写入文件
-      - value: list
-        label:
-          en_US: List Directory
-          zh_Hans: 列出目录
 
   - name: file_path
     type: string
